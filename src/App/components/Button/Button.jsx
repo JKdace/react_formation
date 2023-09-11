@@ -7,8 +7,9 @@ import propTypes from 'prop-types'
  * @returns 
  */
 const Button=(props) => {
+    // j'appelle via les props la fonction du parent, le moyen de remonter des infos
     return <button onClick={(evt) => {
-        props.onClick('test');
+        props.onClick();
     }} className={style.Button} style={{
         backgroundColor: props.bgColor,
         ...props.style,
