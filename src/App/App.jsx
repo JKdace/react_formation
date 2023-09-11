@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./components/Button/Button.jsx";
 
 /**
@@ -7,7 +7,23 @@ import Button from "./components/Button/Button.jsx";
  * @returns
  */
 const App = (props) => {
-  const [state, setState] = useState({ counter: 0 });
+  // définition état avec le compteur
+  const [state, setState] = useState({ counter: -1 });
+  // On observe l'état
+  useEffect(() => {
+    console.log('useEffect',state)
+    /*
+    return () => {
+
+    }
+    */
+  }, [state])
+  // Pour fixer la valeur du state une fois que le composant "didmount" (initialisation / montage du composant), on ajoute un effect qui observe "rien" []
+  useEffect(() => {
+    console.log('montage',state)
+    setState({...state,counter:0})
+  }, [])
+  
   // On envoie une fonction dans les props pour le click du bouton
   return (
     <div className="App">
@@ -17,6 +33,7 @@ const App = (props) => {
         bgColor="yellow"
         style={{ width: "250px", padding: "15px" }}
         onClick={() => {
+          // quand on clique, on met à jour le compteur
           setState({...state,counter:state.counter-1});
         }}
       >
@@ -29,7 +46,7 @@ const App = (props) => {
       <Button
         bgColor="white"
         style={{ width: "250px", padding: "15px" }}
-        onClick={(arg) => {
+        onClick={() => {
             setState({...state,counter:state.counter+1});
         }}
       >
