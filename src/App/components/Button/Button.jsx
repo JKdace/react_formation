@@ -12,12 +12,12 @@ const Button=(props) => {
     }} className={style.Button} style={{
         backgroundColor: props.bgColor,
         ...props.style,
-    }}>{props.text}</button>
+    }}>{props.children}</button>
 }
 
 Button.propTypes = {
-    text: propTypes.string.isRequired,
-    bgColor: propTypes.oneOf(['skyblue','tomato','transparent']),
+    children: propTypes.any.isRequired,
+    bgColor: propTypes.oneOf(['skyblue','yellow','transparent','white']),
     style: propTypes.shape({
         width: propTypes.string,
         padding: propTypes.string
