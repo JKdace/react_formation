@@ -35,6 +35,7 @@ const Button = (props) => {
     </button>
   );
 };
+
 // warning dans la console si ces définitions ne sont pas respectées
 Button.propTypes = {
   children: propTypes.any.isRequired,
@@ -44,6 +45,7 @@ Button.propTypes = {
     padding: propTypes.string,
   }),
 };
+
 // valeurs de props par défaut
 Button.defaultProps = {
   bgColor: "skyblue",
