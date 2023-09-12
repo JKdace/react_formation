@@ -12,13 +12,13 @@ const MemeForm = (props) => {
   return (
     <div className={styles.MemeForm} data-testid="MemeForm">
       <form>
-        <label for="titre">
+        <label htmlFor="titre">
           <h1>Titre</h1>
         </label>
         <br />
         <input name="titre" id="titre" />
         <hr />
-        <label for="image">
+        <label htmlFor="image">
           <h2>Image</h2>
         </label>
         <br />
@@ -29,29 +29,29 @@ const MemeForm = (props) => {
           <option value="4">gwenadu.jpg</option>
         </select>
         <hr />
-        <label for="text">
+        <label htmlFor="text">
           <h2>texte</h2>
         </label>
         <br />
         <input name="text" id="text" type="text" />
         <br />
-        <label for="x">
+        <label htmlFor="x">
           <h2 className={styles.inline}>x :</h2>
         </label>
         <input className={styles.smallNumber} name="x" id="x" type="number" />
-        <label for="y">
+        <label htmlFor="y">
           <h2 className={styles.inline}>y :</h2>
         </label>
         <input className={styles.smallNumber} name="y" id="y" type="number" />
         <hr />
         <br />
         <h2>Decorations</h2>
-        <label for="color">
+        <label htmlFor="color">
           <h2 className={styles.inline}>color :</h2>
         </label>
         <input name="color" id="color" type="color" />
         <br />
-        <label for="fontSize">
+        <label htmlFor="fontSize">
           <h2 className={styles.inline}>font-size :</h2>
         </label>
         <input
@@ -63,7 +63,7 @@ const MemeForm = (props) => {
         />
         px
         <br />
-        <label for="fontWeight">
+        <label htmlFor="fontWeight">
           <h2 className={styles.inline}>font-weight :</h2>
         </label>
         <input
@@ -78,18 +78,18 @@ const MemeForm = (props) => {
         <br />
         <input name="underline" id="underline" type="checkbox" />
         &nbsp;
-        <label for="underline">
+        <label htmlFor="underline">
           <h2 className={styles.inline}>underline</h2>
         </label>
         &nbsp;<h2 className={styles.inline}>/</h2>&nbsp;
-        <label for="italic">
+        <label htmlFor="italic"></label>
           <h2 className={styles.inline}>italic</h2>
         </label>
         &nbsp;
         <input name="italic" id="italic" type="checkbox" />
         <hr />
         <br />
-        <label for="frameSizeX">
+        <label htmlFor="frameSizeX">
           <h2 className={styles.inline}>frame size X :</h2>
         </label>
         <input
@@ -100,7 +100,7 @@ const MemeForm = (props) => {
           min="0"
         />
         px
-        <label for="frameSizeY">
+        <label htmlFor="frameSizeY">
           <h2 className={styles.inline}>frame size y :</h2>
         </label>
         <input
