@@ -40,8 +40,7 @@ const MemeViewer: React.FC<IMemeViewerProps> = (props) => {
         fontStyle={props.meme.italic ? 'italic' : 'normal'}
         fontWeight={props.meme.fontWeight}
       >
-        {props.meme.text ? props.meme.text : 'Hello World'}
-        
+      {props.meme.text}  
       </text>
     </svg>
   )
