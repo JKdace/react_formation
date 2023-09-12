@@ -21,8 +21,11 @@ const Button = (props) => {
       onClick={(evt) => {
         // Quand je clique je modifie l'état isClicked
         setIsClicked(true);
-        // j'appelle via les props la fonction du parent, le moyen de remonter des infos, j'indique que j'ai été cliqué
-        props.onClick();
+        // j'appelle via les props la fonction envoyé par le parent, le moyen de remonter des infos, j'indique que j'ai été cliqué
+        // 
+        // test undefined au cas où on n'a pas besoin du click comme avec un submit, 
+        // la fonction n'est pas définie et envoyé par le parent
+        if(undefined!==props.onClick)props.onClick();
       }}
       // si isClicked, j'ajoute la classe css clicked
       className={isClicked ? style.Button + " " + style.clicked : style.Button}
@@ -30,6 +33,7 @@ const Button = (props) => {
         backgroundColor: props.bgColor,
         ...props.style,
       }}
+      type={props.type}
     >  
       {props.children}
     </button>
@@ -39,16 +43,18 @@ const Button = (props) => {
 // warning dans la console si ces définitions ne sont pas respectées
 Button.propTypes = {
   children: propTypes.any.isRequired,
-  bgColor: propTypes.oneOf(["skyblue", "yellow", "transparent", "white"]),
+  bgColor: propTypes.oneOf(["skyblue", "yellow", "transparent", "white", "green", "red"]),
   style: propTypes.shape({
     width: propTypes.string,
     padding: propTypes.string,
   }),
+  type: propTypes.oneOf(["button", "submit", "reset", undefined]),
 };
 
 // valeurs de props par défaut
 Button.defaultProps = {
   bgColor: "skyblue",
+  type: "button"
 };
 
 export default Button;
