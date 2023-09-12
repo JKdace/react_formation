@@ -15,7 +15,7 @@ export interface IMeme {
 }
 export const DummyMeme: IMeme = {
   titre: '',
-  text: '',
+  text: 'Hello World',
   x: 0,
   y: 17,
   fontWeight: '500',
