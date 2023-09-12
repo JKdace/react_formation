@@ -25,7 +25,9 @@ const App = () => {
         <Navbar></Navbar>
         <FlexW1G>
           <MemeViewer meme={current} image={images.find((img) => img.id === current.imageId)} basePath=""></MemeViewer>
-          <MemeForm></MemeForm>
+          <MemeForm meme={current} onMemeChange={(newMeme) => {
+              setCurrent(newMeme);
+            }}></MemeForm>
         </FlexW1G>
         <Footer></Footer>
       </FlexH3G>
