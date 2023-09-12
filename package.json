@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "gen-ui": "npx generate-react-cli c --type=ui",
     "gen-layout": "npx generate-react-cli c --type=layout",
-    "gen-function": "npx generate-react-cli c --type=function"
+    "gen-function": "npx generate-react-cli c --type=function",
+    "json": "npx json-server -p 7956 db/db.json"
   },
   "dependencies": {
     "bootstrap": "5.3",
