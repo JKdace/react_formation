@@ -1,1 +1,4 @@
-.Header {}
+.Header {
+    color: skyblue;
+    font-weight: bold;
+}

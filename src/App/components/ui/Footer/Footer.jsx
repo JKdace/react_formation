@@ -4,7 +4,7 @@ import styles from './Footer.module.css';
 
 const Footer = () => (
   <div className={styles.Footer} data-testid="Footer">
-    Footer Component
+    J.B. 2023
   </div>
 );
 
