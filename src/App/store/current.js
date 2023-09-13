@@ -7,11 +7,12 @@ const current = createSlice({
     name: 'current',
     initialState,
     reducers: {
-        changeCurrent(state,action){
-
+        change(state,action){
+            Object.assign(state,action.payload);
         },
-        clearCurrent(state,action){
-
+        clear(state,action){
+            delete state.id;
+            Object.assign(state,DummyMeme);
         }
     }
 });
