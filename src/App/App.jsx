@@ -7,6 +7,7 @@ import Navbar from "./components/ui/Navbar/Navbar"
 import MemeForm from "./components/MemeForm/MemeForm"
 import MemeViewer from "./components/ui/MemeViewer/MemeViewer"
 import { DummyMeme } from './interfaces/common'
+import { store } from './store/store'
 
 const App = () => {
   const [current, setCurrent] = useState(DummyMeme)
