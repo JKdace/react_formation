@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styles from "./MemeForm.module.css";
 import Button from "../Button/Button.jsx";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const memeFormInitialState = {};
 const MemeForm = (props) => {
@@ -11,60 +13,104 @@ const MemeForm = (props) => {
   const [state, setstate] = useState(memeFormInitialState);
   return (
     <div className={styles.MemeForm} data-testid="MemeForm">
-      <form onSubmit={(evt) => {
-            evt.preventDefault();
-        }}>
+      <form
+        onReset={(evt) => {
+          props.onMemeChange(initialFormLoadedDatas);
+        }}
+        onSubmit={(evt) => {
+          evt.preventDefault();
+        }}
+      >
         <label htmlFor="titre">
           <h1>Titre</h1>
         </label>
         <br />
-        <input name="titre" id="titre" 
-        value={props.meme.titre} onChange={(evt) => {
-          props.onMemeChange({...props.meme,titre:evt.target.value})
-       }}
+        <input
+          name="titre"
+          id="titre"
+          value={props.meme.titre}
+          onChange={(evt) => {
+            props.onMemeChange({ ...props.meme, titre: evt.target.value });
+          }}
         />
         <hr />
         <label htmlFor="image">
           <h2>Image</h2>
         </label>
         <br />
-        <select name="image" id="image" value={props.meme.imageId} onChange={(evt) =>  {
-          props.onMemeChange({...props.meme,imageId:Number(evt.target.value)})
-        }}>
+        <select
+          name="image"
+          id="image"
+          value={props.meme.imageId}
+          onChange={(evt) => {
+            props.onMemeChange({
+              ...props.meme,
+              imageId: Number(evt.target.value),
+            });
+          }}
+        >
           <option value="-1">Pas d'image</option>
-          {props.images.map((e,i) => (<option key={'opt-img-'+i} value={e.id}>{e.titre}</option>))}
+          {props.images.map((e, i) => (
+            <option key={"opt-img-" + i} value={e.id}>
+              {e.titre}
+            </option>
+          ))}
         </select>
         <hr />
         <label htmlFor="text">
           <h2>texte</h2>
         </label>
         <br />
-        <input name="text" id="text" value={props.meme.text} onChange={(evt) => {
-           props.onMemeChange({...props.meme,text:evt.target.value})
-        }} type="text" />
+        <input
+          name="text"
+          id="text"
+          value={props.meme.text}
+          onChange={(evt) => {
+            props.onMemeChange({ ...props.meme, text: evt.target.value });
+          }}
+          type="text"
+        />
         <br />
         <label htmlFor="x">
           <h2 className={styles.inline}>x :</h2>
         </label>
-        <input className={styles.smallNumber} name="x" id="x" type="number" value={props.meme.x} onChange={(evt) =>  {
-          props.onMemeChange({...props.meme,x:Number(evt.target.value)})
-        }}/>
+        <input
+          className={styles.smallNumber}
+          name="x"
+          id="x"
+          type="number"
+          value={props.meme.x}
+          onChange={(evt) => {
+            props.onMemeChange({ ...props.meme, x: Number(evt.target.value) });
+          }}
+        />
         <label htmlFor="y">
           <h2 className={styles.inline}>y :</h2>
         </label>
-        <input className={styles.smallNumber} name="y" id="y" type="number" value={props.meme.y} onChange={(evt) =>  {
-          props.onMemeChange({...props.meme,y:Number(evt.target.value)})
-        }}/>
+        <input
+          className={styles.smallNumber}
+          name="y"
+          id="y"
+          type="number"
+          value={props.meme.y}
+          onChange={(evt) => {
+            props.onMemeChange({ ...props.meme, y: Number(evt.target.value) });
+          }}
+        />
         <hr />
         <br />
         <h2>Decorations</h2>
         <label htmlFor="color">
           <h2 className={styles.inline}>color :</h2>
         </label>
-        <input name="color" id="color" type="color" 
-        value={props.meme.color} onChange={(evt) => {
-          props.onMemeChange({...props.meme,color:evt.target.value})
-       }}
+        <input
+          name="color"
+          id="color"
+          type="color"
+          value={props.meme.color}
+          onChange={(evt) => {
+            props.onMemeChange({ ...props.meme, color: evt.target.value });
+          }}
         />
         <br />
         <label htmlFor="fontSize">
@@ -77,8 +123,11 @@ const MemeForm = (props) => {
           type="number"
           min="0"
           value={props.meme.fontSize}
-          onChange={(evt) =>  {
-            props.onMemeChange({...props.meme,fontSize:Number(evt.target.value)})
+          onChange={(evt) => {
+            props.onMemeChange({
+              ...props.meme,
+              fontSize: Number(evt.target.value),
+            });
           }}
         />
         px
@@ -95,15 +144,25 @@ const MemeForm = (props) => {
           step="100"
           max="900"
           value={props.meme.fontWeight}
-          onChange={(evt) =>  {
-            props.onMemeChange({...props.meme,fontWeight:Number(evt.target.value)})
+          onChange={(evt) => {
+            props.onMemeChange({
+              ...props.meme,
+              fontWeight: Number(evt.target.value),
+            });
           }}
         />
         <br />
-        <input name="underline" id="underline" type="checkbox" 
-        value={props.meme.underline.checked} onChange={(evt) => {
-          props.onMemeChange({...props.meme,underline:evt.target.checked})
-       }}
+        <input
+          name="underline"
+          id="underline"
+          type="checkbox"
+          value={props.meme.underline.checked}
+          onChange={(evt) => {
+            props.onMemeChange({
+              ...props.meme,
+              underline: evt.target.checked,
+            });
+          }}
         />
         &nbsp;
         <label htmlFor="underline">
@@ -114,10 +173,14 @@ const MemeForm = (props) => {
           <h2 className={styles.inline}>italic</h2>
         </label>
         &nbsp;
-        <input name="italic" id="italic" type="checkbox" 
-        value={props.meme.italic.checked} onChange={(evt) => {
-          props.onMemeChange({...props.meme,italic:evt.target.checked})
-       }}
+        <input
+          name="italic"
+          id="italic"
+          type="checkbox"
+          value={props.meme.italic.checked}
+          onChange={(evt) => {
+            props.onMemeChange({ ...props.meme, italic: evt.target.checked });
+          }}
         />
         <hr />
         <br />
@@ -131,8 +194,11 @@ const MemeForm = (props) => {
           type="number"
           min="0"
           value={props.meme.frameSizeX}
-          onChange={(evt) =>  {
-            props.onMemeChange({...props.meme,frameSizeX:Number(evt.target.value)})
+          onChange={(evt) => {
+            props.onMemeChange({
+              ...props.meme,
+              frameSizeX: Number(evt.target.value),
+            });
           }}
         />
         px
@@ -146,14 +212,22 @@ const MemeForm = (props) => {
           type="number"
           min="0"
           value={props.meme.frameSizeY}
-          onChange={(evt) =>  {
-            props.onMemeChange({...props.meme,frameSizeY:Number(evt.target.value)})
+          onChange={(evt) => {
+            props.onMemeChange({
+              ...props.meme,
+              frameSizeY: Number(evt.target.value),
+            });
           }}
         />
         px
-        <br /><br />
-        <Button type='submit' bgColor='green'>Ok</Button>
-        <Button type='reset' bgColor='red'>Annuler</Button>
+        <br />
+        <br />
+        <Button type="submit" bgColor="green">
+          Ok
+        </Button>
+        <Button type="reset" bgColor="red">
+          Annuler
+        </Button>
       </form>
     </div>
   );
@@ -164,3 +238,20 @@ MemeForm.propTypes = {};
 MemeForm.defaultProps = {};
 
 export default MemeForm;
+
+export const MemeFormStoredData = (props) => {
+  const dispatch = useDispatch();
+  const images = useSelector((s) => s.ressources.images);
+  const current = useSelector((s) => s.current);
+
+  return (
+    <MemeForm
+      {...props}
+      images={images}
+      meme={current}
+      onMemeChange={(newMeme) => {
+        dispatch({ type: "current/change", payload: newMeme });
+      }}
+    ></MemeForm>
+  );
+};
