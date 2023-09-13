@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import ressourcesReducer, { addImage, fetchAllRessources } from "./ressources.js";
+import ressourcesReducer, { addImage, fetchAllRessources/* , fetchMemes */ } from "./ressources.js";
 import currentReducer from "./current.js";
 
 export const store = configureStore({
@@ -7,6 +7,7 @@ export const store = configureStore({
     devTools: true
 })
 store.dispatch(fetchAllRessources());
+//store.dispatch(fetchMemes());
 /*const daction = addImage({id: -1, url: "hello"});
 console.log(daction);
 
